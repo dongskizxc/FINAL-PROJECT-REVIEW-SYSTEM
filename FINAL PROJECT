@@ -1,0 +1,1165 @@
+print()
+print("Hello, choose between: ")
+print()
+print("Do you wish to continue in Guest mode or Sign up? ")
+print()
+account = (input("Enter (Y) to Sign up, Enter (N) to Guest mode: ")).upper()
+
+while account != "Y" and account != "N":
+    print("Invalid Input Please try again.")
+    account = (input("Enter (Y) to Sign up, Enter (N) to Guest mode: ")).upper()
+    print()
+
+if account == "Y":
+    print("Welcome! Please Sign up first")
+    print()
+    username = input("Input your Username: ")
+    password = input("Input your password: ")
+
+    password_confirm = input("Input your password again for confirmation: ")
+
+    while password!= password_confirm:
+        print("They don't match! Please try again.")
+        password_confirm = input("Input your password again for confirmation: ")
+
+    print()
+    print("Signed Up Successful, You're all set! ")
+
+    print()
+    print("----------------------------------------")
+    print("              ACCOUNT LOGIN             ")
+    print("----------------------------------------")
+
+    login_username = input("Enter your Username: ")
+    login_password = input("Enter your Password: ")
+
+    while login_username != username or login_password != password:
+        print()
+        print("Incorrect Username or Password! Please Try Again.")
+
+        login_username = input("Enter your Username: ")
+        login_password = input("Enter your Password: ")
+
+    print()
+    print("LOGIN SUCCESSFUL")
+
+    print()
+    print(
+        f"Hello, {login_username}! Welcome to my Python Finals Reviewer, What would you like to tackle?")
+    print( "-----------------------------------------------------------------------------------------------------------------")
+
+    print("                                         PYTHON FINAL LESSONS REVIEWER")
+    print( "-----------------------------------------------------------------------------------------------------------------")
+
+
+else:
+    print()
+    name = input("Enter your Name:")
+
+
+    valid_name = True
+    has_letter = False
+
+    for character in name:
+        if character.isalpha():
+            has_letter = True
+        elif character != " ":
+            valid_name = False
+
+    while valid_name == False or has_letter == False:
+        print()
+        print("Special characters and numbers are not allowed!")
+        print()
+        name = input("Enter your Name again: ")
+
+        valid_name = True
+        has_letter = False
+
+        for character in name:
+            if character.isalpha():
+                has_letter = True
+            elif character != " ":
+                valid_name = False
+    print()
+    print("GUEST MODE")
+    print()
+    print(f"Hello, {name}! Welcome to my Python Finals Reviewer, What would you like to tackle?")
+    print()
+
+
+
+    print("-----------------------------------------------------------------------------------------------------------------")
+    print("                                         PYTHON FINAL LESSONS REVIEWER")
+    print("-----------------------------------------------------------------------------------------------------------------")
+
+
+
+
+
+points = 0
+best_challenge_score = 0
+quizzes_passed = 0
+quiz_done = []
+
+titles = [
+    # ---CHAPTER 1 INTRODUCTION TO PROGRAMMING---
+    # -----[0]-----
+    "What is Programming Language",
+    # -----[1]-----
+    "What is Python Programming",
+    # -----[2]-----
+    "Why learn PYTHON?",
+    # -----[3]-----
+    "What do you need to start Python",
+
+    # ---CHAPTER 2 PYTHON BASIC SYNTAX---
+    # -----[4]-----
+    "Python Syntax",
+    # -----[5]-----
+    "The print() Statement",
+    # -----[6]-----
+    "Printing Text and Numbers",
+    # -----[7]-----
+    "Python Comments",
+    # -----[8]-----
+    "Variables, Constants,and Data Types in Python",
+    # -----[9]-----
+    "basic Data Types in Python",
+
+    # ---CHAPTER 3 ARITHMETIC OPERATORS and EXPRESSIONS---
+    # -----[10]-----
+    "Arithmetic Operators",
+    # -----[11]-----
+    "Expressions and PEMDAS",
+
+    # ---CHAPTER 4 Basic Input and Output in Python---
+    # ----- [12]-----
+    "User Input Function",
+    # -----[13] -----
+    "Formatting Output",
+    # ----- [14]-----
+    "Converting Input to Other Data Types",
+
+    # --- (CONDITIONAL STATEMENTS IN PYTHON)---
+    # ----- [15]-----
+    "Introduction to Conditional Statements",
+    # -----[16]-----
+    "Relational Operators",
+    # -----[17]-----
+    "If Statement",
+    # -----[18] -----
+    "If-else Statement",
+    # -----[19]-----
+    "If-elif-else Statement",
+    # -----[20]-----
+    "Nested Conditions",
+    # -----[21]-----
+    "Logical Operators",
+
+    #  ----FINALS--- Introduction to Iteration and Loops
+    # -----[22]-----
+    "For Loop",
+    #  -----[23]-----
+    "While Loop"
+]
+
+notes = [
+
+    # CHAPTER 1 INTRODUCTION TO PROGRAMMING
+    # -----[0]-----
+    [
+        "A programming language is a special language that computers understand and use to perform tasks.",
+        "Python is easy to learn and read. It is great for beginners, data science, and automation.",
+        "C / C++ has high performance and is used in system programming, games, and applications.",
+        "PHP is used for web development. It works well with databases and server-side scripting.",
+        "Java is platform-independent and widely used. It is great for apps and systems.",
+        "JavaScript is the language of the web. It adds interactivity to websites.",
+        "Ruby is known for simplicity and productivity. It is used in web development.",
+        "Each language has its own strengths. Choose the right tool for the right job."
+    ],
+
+    # -----[1] -----
+    [
+        "Python is a high-level, interpreted, and general-purpose programming language designed to be simple, readable, and easy to learn.",
+        "Python is a widely-used programming language that was created by Guido van Rossum in 1991.",
+        "A dutch software engineer best known for creating the Python programming language in 1991",
+        "He designed Python with the goal of making programming simple, readable, and easy to learn while remaining powerful enough for professional software development."
+    ],
+
+    # - ----[2]-----
+    [
+        "Simple and easy to learn - great for beginners.",
+        "Readable syntax - the code looks almost like English.",
+        "Versatile - used in many fields (AI, web, automation, games, etc.).",
+        "Huge community - lots of support, tutorials, and libraries."
+    ],
+
+    # ---- -[3]-----
+    [
+        "To start Python programming, you need an IDE or a code editor to write and run your code.",
+        "PyCharm (by JetBrains) is a professional IDE for Python.",
+        "VS Code (Visual Studio Code) is a popular code editor.",
+        "Jupyter Notebook / JupyterLab lets you write and run code in notebook cells."
+    ],
+
+    # -----CHAPTER 2 BASIC  SYNTAX PYTON -----
+    # ----- [4] -----
+    [
+        "Python is case-sensitive. It treats uppercase and lowercase letters differently.\nExample:\nname = \"John\"\nprint(name)    ✔\nprint(Name)    ✕ error: Name is not the same as name",
+        "Example 2:\nage = 18\nif age >= 18:\n    print(\"Adult\")    ✔ indented (inside the block)\n\nage = 18\nif age >= 18:\nprint(\"Adult\")        ✕ NOT indented (outside the block)",
+        "Example 2: print(age = 18 <----- Assigns value or variable \n \n   if age >= 18 <---- check condition \n       print(\"Adult\") <---- (Indented inside the  block) \n \n age = 18 \n\n   if age >=18 \n print(\"Adult\") <---- ✕ NOT INDENTED INSIDE THE BLOCK )",
+        "name and Name are not the same, so print(Name) gives an error if only name was created.",
+        "Unlike other programming languages, Python uses indentation (spaces) to define blocks of code.",
+        "A line inside an if block must be indented."
+    ],
+
+    # ---- [5] ----
+    [
+        "The print() function displays information on the screen.",
+        "Syntax: print(value)",
+        "print - the function that displays output.",
+        "() - parentheses that contain the information to be displayed.",
+        '"value" - the text, number, variable, or expression you want to show.'
+    ],
+
+    # ----[6] ----
+    [
+        "Text (also called a string) must be enclosed in quotation marks.",
+        "Without quotes, Python treats Hello and World as variable names, not text.",
+        "You can print numbers directly without quotation marks.",
+        "Numbers (int, float) are used without quotes.",
+        "print(100) and print(\"100\") show the same output, but 100 is an int and \"100\" is a str.",
+        "Remember: use quotes for text, not for numbers."
+    ],
+
+    # ----[7] ----
+    [
+        "Comments are ignored by Python.",
+        "They are used to explain the code.",
+        "A single-line comment uses the hash symbol #. It continues until the end of the line.",
+        "A multi-line comment uses triple quotes \"\"\" and continues until the closing \"\"\".",
+        "Comments are used for short explanations, disabling a line of code, quick notes, and documentation."
+    ],
+
+    # ---- [8]----
+    [
+        "A variable is a named storage location used to keep data in a program.",
+        "The value of a variable can change while the program is running.",
+        "Examples: a, b, c, age, name.",
+        "A variable can have a short name (x, y) or a more descriptive name (age, carname, total_volume).",
+        "A variable name must start with a letter or the underscore character.",
+        "A variable name cannot start with a number.",
+        "Variable names are case-sensitive (age and AGE are two different variables).",
+        "We assign a value to a variable using the = (assignment operator)."
+    ],
+
+    # ---[9 ]---
+    [
+        "Data types are categories that tell Python what kind of data a variable stores.",
+        "They determine the type of value a variable can hold and what operations can be performed on that value.",
+        "int - whole numbers (example: 18).",
+        "float - numbers with a decimal point (example: 99.50).",
+        "str - text inside quotes (example: \"John\").",
+        "bool - True or False.",
+        "A constant is a value that should not change. By convention, it is written in capital letters (example: PI = 3.14)."
+    ],
+
+    # CHAPTER 3 ARITHMETIC OPERATORB
+    # ---[10] ----
+    [
+        "Arithmetic operators are symbols used to perform mathematical calculations on numbers.",
+        "They work the same way as the operators used in everyday mathematics.",
+        "+ addition, - subtraction, * multiplication, / division.",
+        "% modulus (remainder), // floor division, ** exponent (power)."
+    ],
+
+    # -----[11]-----
+    [
+        "An expression is a combination of values, variables, and operators that evaluates to a result.",
+        "Python follows the order of operations (PEMDAS).",
+        "P - Parentheses, E - Exponents, MD - Multiplication and Division, AS - Addition and Subtraction.",
+        "Operators with the same priority are solved from left to right."
+
+    ],
+
+    # CHAPTER 4 Basic Input and Output in Python-
+    # -----[ 12] ----
+    [
+        "input() lets the program accept information typed by the user.",
+        "Real-life example: asking for a user's name and then responding to it.",
+        "Syntax: variable = input(\"Prompt message: \")",
+        "All input is a string (str) by default."
+
+    ],
+
+    # --- [13]---
+    [
+        "Using a comma , in print() separates the items and adds a space between them.",
+        "Using + joins text together without adding a space.",
+        "Numbers must be converted with str() before joining them with +.",
+        "You can mix text and variables in the same print()."
+    ],
+
+    # ---[14] ---
+    [
+        "input() always gives a string, so you must convert it before doing math.",
+        "int() converts a value into a whole number.",
+        "float() converts a value into a decimal number (for decimal input like 1.72).",
+        "Boolean input (True or False) is done using conditions, such as comparing the typed text to \"yes\"."
+    ],
+
+    # CHAPTER  5 CONDITIONAL STATEMENTSSSSS
+    [
+        # --- [15] ----
+        "Conditional statements let a program make decisions.",
+        "A conditional statement allows a program to make decisions based on whether a condition is True or False.",
+        "The code inside the if block must be indented."
+    ],
+
+    # ---[16] ---
+    [
+        "They are Also called comparison operators, they are used to compare two values. The result is always either True or False",
+        "The relational operators are often used to create a test expression that controls program flow. ",
+        "his type of expression is also known as a Boolean expression because they create a Boolean answer or value when evaluated. There are six common relational operators that give a Boolean value by comparing (showing the relationship) between two operands. "
+    ],
+
+    # ---[17] ----
+    [
+        "Conditional statements let a program make decisions.",
+        "An if statement runs a block of code only when its condition is True.",
+        "The if line ends with a colon :"
+    ],
+
+    # ----[18] ---
+    [
+        "else runs when the if condition is False.",
+        "else has no condition of its own.",
+        "else must line up with its if."
+    ],
+
+    # ----[19] ---
+    [
+        "Use elif to check more than one condition.",
+        "Python checks from top to bottom and runs the first block that is True.",
+        "else is the last choice when none of the conditions above are True."
+    ],
+
+    # ----[20] ---
+    [
+        "A nested condition is an if statement inside another if statement.",
+        "The inner if only runs when the outer if is True.",
+        "Each level needs more indentation."
+    ],
+
+    # ----[21] ---
+    [
+        "Logical operators combine conditions.",
+        "and is True only when both conditions are True.",
+        "or is True when at least one condition is True.",
+        "not reverses a Boolean value (True becomes False, False becomes True)."
+    ],
+
+    # FINALS LESSON FOR LOOP/WHILE LOOP
+    # ----[22] ---
+    [
+        "A loop repeats a block of code.",
+        "A for loop goes through each item in a sequence, such as a list or a range.",
+        "range(5) gives the numbers 0, 1, 2, 3, 4.",
+        "The loop variable takes each value one by one."
+    ],
+
+    # ----[23] ---
+    [
+        "A while loop repeats as long as its condition is True.",
+        "Something inside the loop must change the condition, or the loop will run forever.",
+        "The break statement stops a loop immediately.",
+        "The continue statement skips the current round."
+    ],
+]
+
+examples = [
+
+    # PARA CHAPTER 1
+    # --[0]---
+    "Example:\nPython     -> beginners, data science, automation\nC / C++    -> system programming, games, applications\nPHP        -> web development, databases\nJava       -> apps and systems\nJavaScript -> interactive websites\nRuby       -> web development",
+
+    # ---[1]----
+    "Example:\nCreator : Guido van Rossum\nYear    : 1991\nType    : high-level, interpreted, general-purpose",
+
+    # ---[2]----
+    "Example:\nPython is used in:\n- Artificial Intelligence (AI)\n- Web development\n- Automation\n- Games",
+
+    # ---[3]----
+    "Example:\nProfessional IDEs / Code Editors:\n1. PyCharm (by JetBrains)\n2. VS Code (Visual Studio Code)\n3. Jupyter Notebook / JupyterLab",
+
+    # PARA CHAPTER 2 BOI BASIC SYNTAX
+    # ---[4]----
+    "Example:\nname = \"John\"\nprint(name)     # correct\nprint(Name)     # ERROR: Name is not the same as name\n\nage = 18\nif age >= 18:\n    print(\"Adult\")  # indented (inside the block)",
+
+    #  ---[5]----
+    "Example:\nprint(\"Hello, World!\")\n\nOutput:\nHello, World!",
+
+    # ---[6]----
+    "Example:\nprint(\"Hello, World!\")\nprint(100)\nprint(25.5)\nprint(\"100\")\nprint(type(100))\nprint(type(\"100\"))\n\nOutput:\nHello, World!\n100\n25.5\n100\n<class 'int'>\n<class 'str'>",
+
+    # ---[7]----
+    "Example:\n# This is a comment\nprint(\"Hello\")\n\n\"\"\"\nThis is\na multi-line\ncomment.\n\"\"\"\nprint(\"Hello\")\n\nOutput:\nHello\nHello",
+
+    # ---[8]----
+    "Example:\nage = 18\nname = \"John\"\ntotal_volume = 50\n\nprint(age)\nprint(name)\n\nOutput:\n18\nJohn",
+
+    # ---[9]----
+    "Example:\nage = 18            # int\nprice = 99.50      # float\nname = \"John\"      # str\nis_student = True  # bool\nPI = 3.14          # constant (by convention)\n\nprint(type(age))\n\nOutput:\n<class 'int'>",
+
+    #  PARA CHAPTER THREY 3
+
+    # ---CHAPTER 3 ARITHMETIC OPERATORS and EXPRESSIONS---
+    # -----[10]-----
+    "Example:\nx = 10\ny = 3\n\nprint(x + y)\nprint(x - y)\nprint(x * y)\nprint(x / y)\nprint(x % y)\nprint(x // y)\nprint(x ** y)\n\nOutput:\n13\n7\n30\n3.3333333333333335\n1\n3\n1000",
+
+    # -----[11]-----
+    "Example:\nprint(2 + 3 * 4)\nprint((2 + 3) * 4)\nprint(2 ** 3 + 1)\n\nOutput:\n14\n20\n9",
+
+    # CHAPTER 4 NA BOII
+    # ----- [12]-----
+    "Example:\nname = input(\"Enter your name: \")\nprint(\"Welcome\", name)\n\nOutput:\nEnter your name: Juan\nWelcome Juan",
+
+    # -----[13] -----
+    "Example:\nname = \"Maria\"\nitem = \"Bread\"\n\nprint(\"Customer:\", name)\nprint(\"Item: \" + item)\n\nOutput:\nCustomer: Maria\nItem: Bread",
+
+    # ----- [14]-----
+    "Example:\nage = int(input(\"Enter age: \"))\nheight = float(input(\"Enter height (m): \"))\nis_student = input(\"Student? (yes/no): \") == \"yes\"\n\nprint(age + 1)\nprint(height)\nprint(is_student)\n\nOutput (if you type 18, 1.72, yes):\n19\n1.72\nTrue",
+
+    # CHAPTER 5 BOIIi
+    # ----- [15]-----
+    "Example: age = 18 \nif age >= 18:\n   print(\"You are an adult.\")",
+
+    # -----[16]-----
+    "score = 85 \n\n print(score >= 75)\n\n Output: \nTrue",
+
+    # -----[17]-----
+    "Example:\nage = 18\n\nif age >= 18:\n    print(\"Adult\")\n\nOutput:\nAdult",
+
+    # -----[18] -----
+    "Example:\nage = 15\n\nif age >= 18:\n    print(\"Adult\")\nelse:\n    print(\"Minor\")\n\nOutput:\nMinor",
+
+    # -----[19]-----
+    "Example:\nscore = 85\n\nif score >= 90:\n    print(\"A\")\nelif score >= 80:\n    print(\"B\")\nelse:\n    print(\"C\")\n\nOutput:\nB",
+
+    # -----[20]-----
+    "Example:\nage = 20\nhas_id = True\n\nif age >= 18:\n    if has_id:\n        print(\"Allowed\")\n    else:\n        print(\"Show your ID\")\n\nOutput:\nAllowed",
+
+    # -----[21]-----
+    "Example:\nage = 20\nhas_id = False\n\nprint(age >= 18 and has_id)\nprint(age >= 18 or has_id)\nprint(not has_id)\n\nOutput:\nFalse\nTrue\nTrue",
+
+    # FINALS NAAAAAAA
+    # -----[22]-----
+    "Example:\nfor i in range(3):\n    print(i)\n\nfruits = ['apple', 'banana']\nfor fruit in fruits:\n    print(fruit)\n\nOutput:\n0\n1\n2\napple\nbanana",
+
+    #  -----[23]-----
+    "Example:\ncount = 1\n\nwhile count <= 3:\n    print(count)\n    count += 1\n\nOutput:\n1\n2\n3"
+]
+
+activities_question = [
+    #  PARA CHAPTER 1
+    # --[0]--
+    "What is the language that adds interactivity to websites??????????",
+
+    # --[1]--
+    "In what year was Python created?",
+
+    # -----[2]-----
+    "How many reasons to learn Python are shown in this lesson?",
+
+    # -----[3]-----
+    "PyCharm is made by what company?",
+
+    # CHAPTER TWOOOOO 2
+    ##-----[4]-----
+    "Python uses what (spaces) to define blocks of code?",
+
+    # -----[5]-----
+    "What function displays output on the screen? (no parentheses)",
+
+    # -----[6]-----
+    "What data type is \"100\"? ",
+
+    # -----[7]-----
+    "What symbol starts a multiple-line comment?",
+
+    # -----[8]-----
+    "Which symbol is the assignment operator?",
+
+    # -----[9]-----
+    "What data type stores True or False?",
+
+    # SAPTER THREEEEEEE 3
+    # -----[10]-----
+    "What is 10 % 3? (the remainder)",
+
+    # -----[11]-----
+    "What is the result of 2 + 3 * 4?",
+
+    # SAPTER PORRR 444444
+    # ----- [12]-----
+    "What is the default data type of everything typed in input()?",
+
+    # -----[13] -----
+    "Which symbol in print() adds a space between items?",
+
+    # ----- [14]-----
+    "Which function converts input into a decimal number?",
+
+    # SAPTER PAYBB MEDTIRM
+    # ----- [15]-----
+    "if age = 17 \n if age <= 18 \n What will it print? print(\" Minor\") or print(\" Adultt \")",
+
+    # -----[16]-----
+    "a = 10 \n 10 !=5 and 10 == a + 1 ",
+
+    # -----[17]-----
+    "What symbol must be at the end of an if line?",
+
+    # -----[18] -----
+    "Which keyword runs when the if condition is False?",
+
+    # -----[19]-----
+    "What keyword checks another condition after if?",
+
+    # -----[20]-----
+    "An if inside another if is called a ____ condition. ",
+
+    # -----[21]-----
+    "What is the result of True and False? (True/False)",
+
+    # FINALEEEEEEEEEEEEEE
+    # -----[22]-----
+    "How many times does for i in range(5) repeat? (type the number)",
+
+    #  -----[23]-----
+    "Which keyword stops a loop immediately?",
+]
+
+activity_answers = [
+
+    #  PARA CHAPTER 1
+    "javascript",  # ---[0]---
+    "1991",  # ---[1]---
+    "4",  # ---[2]---
+    "jetbrains",  # ---[3]---
+
+    # CHAPTER TWOOOOO 2
+    "indentation",  # ---[4]---
+    "print",  # ---[5]---
+    "str",  # --[6]---
+    "\"\"\"",  # ---[7]---
+    "=",  # ---[8]---
+    "bool",  # ---[9]---
+
+    # SAPTER 3333
+    "1",  # ---[10]---
+    "14",  # ---[11]---
+
+    # SAPTER PORRR 444444
+    "str",  # ---[12]---
+    ",",  # ---[13]---
+    "float",  # ---[14]---
+
+    # SAPTER PAYBB MEDTIRM
+    "minor",  # ---[15]---
+    "false",  # ---[16]---
+    ":",  # ---[17]---
+    "else",  # ---[18]---
+    "elif",  # ---[19]---
+    "nested",  # -----[20]-----
+    "false",  # -----[21]-----
+
+    # PINALSSSS
+    "5",  # -----[22]-----
+    "break",  # -----[23]-----
+
+]
+
+quiz_questions = [
+    # CHAPTIR 1
+    # -----[0]-----
+    "What is a programming language?",
+
+    # -----[1]----
+    "Who created the Python programming language?",
+
+    # -----[2]-----
+    "Which is NOT a reason to learn Python?",
+
+    # -----[3]-----
+    "Which of the following is a code editor you can use for Python?",
+
+    # CHAPTER TOWWW 2
+    # -----[4]-----
+    "If name = 'John', what happens when you run print(Name)?",
+
+    # -----[5]-----
+    "In print(value), what does value mean?",
+
+    # -----[6]-----
+    "Which is the correct way to print Hello, World!?",
+
+    # -----[7]-----
+    "What does Python do with comments?",
+
+    # -----[8]-----
+    "Which variable name is NOT allowed?",
+
+    # -----[9]-----
+    "Which data type stores text?",
+
+    # CHAPTER THREEE 3
+    # -----[10]-----
+    "Which operator gives the remainder of a division?",
+
+    # -----[11]-----
+    "In PEMDAS, which is solved first?",
+
+    # CHAPTER 44444
+    # ----- [12]-----
+    "Which function accepts user input?",
+
+    # -----[13] -----
+    "What does print('Total:', 50) show?",
+
+    # ----- [14]-----
+    "What does int(input('Age: ')) do?",
+
+    # CHAPTER 5 CONDITIONALSSS
+    # ----- [15]-----
+    "age = 17\nif age < 18:\n    print(\"Minor\")\nelse:\n    print(\"Adult\")\nWhat will it print?",
+
+    # -----[16]-----
+    "What is a =1 10%3 == a?",
+
+    # -----[17]-----
+    "When does the code inside an if statement run?",
+
+    # -----[18] -----
+    "x = 5. The code is: if x > 10 prints 'Big', else prints 'Small'. What is printed?",
+
+    # -----[19]-----
+    "In if-elif-else, how many blocks can run?",
+
+    # -----[20]-----
+    "In a nested condition, when does the inner if run?",
+
+    # -----[21]-----
+    "Which logical operator is True when at least one condition is True?",
+
+    # FINALSSS FINALLY
+    # -----[22]-----
+    "Which loop goes through each item in a sequence?",
+
+    #  -----[23]-----
+    "What happens if a while loop's condition never becomes False?"
+]
+
+
+quiz_options = [
+    # CHAPTER ONEE
+    # -----[0] - ----
+    ["A. A special language that computers understand and use to perform tasks",
+     "B. A language people use to talk to each other", "C. A robot", "D. A malware "],
+
+    # -----[1]----
+    ["A. Alden Richards", "B. Guido van Rossum", "C. Baron Geisler", "D. Alex Gonzaga"],
+
+    # -----[2]-----
+    ["A. Simple and easy to learn", "B. So you can play all time", "C. Readable Syntax ", "D. Huge community"],
+
+    # -----[3]-----
+    ["A. Photoshop", "B. Valorant", "C. League of Legends", "D. VS Code"],
+
+    # CHAPTER TOWWW 2
+    # -----[4]-----
+    ["A. It gives an error", "B. It prints John", "C. It prints Name", "D. It prints your face"],
+
+    # -----[5]-----
+    ["A. The story of your life", "B. The text, number, variable, or expression you want to show", "C. Yourself",
+     "D. The screen"],
+
+    # -----[6]-----
+    ["A. print(\"Hello, Word!!\")", "B. print Hillo, Bai!", "C. print(\"Hello, World!\")", "D. Print[Hello, World!]"],
+
+    # -----[7]-----
+    ["A. It prints them", "B. It runs them as javascript", "C. Eats them", "D. It ignores them"],
+
+    # -----[8]-----
+    ["A. hehe", "B. 2name@", "C. _total", "D. total_volume"],
+
+    # -----[9]-----
+    ["A. str", "B. fries", "C. cokefloat", "D. Pc"],
+
+    # CHAPTER THREEE 3
+    # -----[10]-----
+    ["A. ****", "B. //", "C. %", "D. %%"],
+
+    # -----[11]-----
+    ["A. Your Problems", "B. Parenthesis ", "C. Your Wifi", "D. Multiplication"],
+
+    # CHAPTER 44444
+    # ----- [12]-----
+    ["A. print.input()", "B. input()", "C. type.accept()", "D. accept.input()"],
+
+    # -----[13] -----
+    ["A. Total; 50", "B. Total:=50", "C. Error", "D. Total: 50"],
+
+    # ----- [14]-----
+    ["A. Your face will explode", "B. Converts the typed text into a whole number",
+     "C. Converts the text into a decimal number", "D. Ends the program"],
+
+    # CHAPTER 5 CONDITIONALSSS
+    # ----- [15]-----
+    ["A. Sheesh", "B. Minor", "C. Allowed", "D. Adult"],
+
+    # -----[16]-----
+    ["A. Shet shet nakita ako", "B. False ", "C. True ", "D.SHEEESHH "],
+
+    # -----[17]-----
+    ["A. Later", "B. When the condition is True", "C. When the condition is False", "D. In a while"],
+
+    # -----[18] -----
+    ["A. Nada", "B. Yes", "C. Small", "D. Big"],
+
+    # -----[19]-----
+    ["A. Only the first True block", "B. All of the above", "C. Ten Blocks", "D. None"],
+
+    # -----[20]-----
+    ["A. Yes", "B. Only when the outer if is False", "C. Sometimes", "D. Only when the outer if is True"],
+
+    # -----[21]-----
+    ["A. and", "B. when", "C. or", "D. if"],
+
+    # FINALSSS FINALLY
+    # -----[22]-----
+    ["A. while loop", "B. for loop", "C. if statement", "D. else"],
+
+    #  -----[23]-----
+    ["A. Python run it once ", "B. It runs 10x", "C. Python deletes it", "D. It runs forever"]
+]
+
+quiz_answers = [
+    "A",  # [0]
+    "B",  # [1]
+    "B",  # [2]
+    "D",  # [3]
+    # CHAP 2
+    "A",  # [4]
+    "B",  # [5]
+    "C",  # [6]
+    "D",  # [7]
+    "B",  # [8]
+    "A",  # [9]
+    "C",  # [10]
+    "B",  # [11]
+    "B",  # [12]
+    "D",  # [13]
+    "B",  # [14]
+    "B",  # [15]
+    "C",  # [16]
+    "B",  # [17]
+    "C",  # [18]
+    "A",  # [19]
+    "D",  # [20]
+    "C",  # [21]
+    "B",  # [22]
+    "D"  # [23]
+]
+
+while True:
+
+    if points >= 200:
+        rank = "Python Master"
+    elif points >= 120:
+        rank = "Elite"
+    elif points >= 50:
+        rank = "Keyboard Warrior"
+    else:
+        rank = "Beginner"
+
+    print("Points:", points, "| Rank:", rank)
+    print("-" * 45)
+
+    print("[1] Chapter 1 - Introduction to Programming")
+    print("[2] Chapter 2 - Python Basic Syntax")
+    print("[3] Chapter 3 - Arithmetic Operators and Expressions")
+    print("[4] Chapter 4 - Accepting User Input")
+    print("[5] Midterm - Conditional Statements")
+    print("[6] Finals - Loops")
+    print("[7] Quiz Challenge")
+    print("[8] My Progress")
+    print("[0] Exit Program")
+    print()
+    chapter = input("Select A Chapter: ")
+
+    if chapter in ["1", "2", "3", "4", "5", "6"]:
+
+        while True:
+
+            if chapter == "1":
+                chapter_title = "CHAPTER 1 - INTRODUCTION TO PROGRAMMING"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("-" * 45)
+
+                print(f"[1] {titles[0]}")
+                print(f"[2] {titles[1]}")
+                print(f"[3] {titles[2]}")
+                print(f"[4] {titles[3]}")
+                print("[0] Back to Main Menu")
+
+
+            elif chapter == "2":
+                chapter_title = "CHAPTER 2 - PYTHON BASIC SYNTAX"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("\n" + "-" * 45)
+
+                print(f"[1] {titles[4]}")
+                print(f"[2] {titles[5]}")
+                print(f"[3] {titles[6]}")
+                print(f"[4] {titles[7]}")
+                print(f"[5] {titles[8]}")
+                print(f"[6] {titles[9]}")
+                print("[0] Back to Main Menu")
+
+            elif chapter == "3":
+                chapter_title = "CHAPTER 3 - ARITHMETIC OPERATORS AND EXPRESSIONS"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("-" * 45)
+
+                print(f"[1] {titles[10]}")
+                print(f"[2] {titles[11]}")
+                print("[0] Back to Main Menu")
+
+            elif chapter == "4":
+                chapter_title = "CHAPTER 4 - ACCEPTING USER INPUT"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("-" * 45)
+
+                print(f"[1] {titles[12]}")
+                print(f"[2] {titles[13]}")
+                print(f"[3] {titles[14]}")
+                print("[0] Back to Main Menu")
+
+            elif chapter == "5":
+                chapter_title = "MIDTERM - CONDITIONAL STATEMENTS"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("-" * 45)
+
+                print(f"[1] {titles[15]}")
+                print(f"[2] {titles[16]}")
+                print(f"[3] {titles[17]}")
+                print(f"[4] {titles[18]}")
+                print(f"[5] {titles[19]}")
+                print(f"[6] {titles[20]}")
+                print(f"[7] {titles[21]}")
+                print("[0] Back to Main Menu")
+
+            else:
+                chapter_title = "FINALS - LOOPS"
+
+                print("\n" + "-" * 45)
+                print(chapter_title)
+                print("-" * 45)
+
+                print(f"[1] {titles[22]}")
+                print(f"[2] {titles[23]}")
+                print("[0] Back to Main Menu")
+
+            print()
+            lesson = input("Select a Lesson: ")
+
+            # BALIK MAIN MENU
+            if lesson == "0":
+                break
+
+
+            if chapter == "1":
+
+                if lesson == "1":
+                    lesson_index = 0
+                elif lesson == "2":
+                    lesson_index = 1
+                elif lesson == "3":
+                    lesson_index = 2
+                elif lesson == "4":
+                    lesson_index = 3
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+
+            elif chapter == "2":
+
+                if lesson == "1":
+                    lesson_index = 4
+                elif lesson == "2":
+                    lesson_index = 5
+                elif lesson == "3":
+                    lesson_index = 6
+                elif lesson == "4":
+                    lesson_index = 7
+                elif lesson == "5":
+                    lesson_index = 8
+                elif lesson == "6":
+                    lesson_index = 9
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+
+            elif chapter == "3":
+
+                if lesson == "1":
+                    lesson_index = 10
+                elif lesson == "2":
+                    lesson_index = 11
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+
+            elif chapter == "4":
+
+                if lesson == "1":
+                    lesson_index = 12
+                elif lesson == "2":
+                    lesson_index = 13
+                elif lesson == "3":
+                    lesson_index = 14
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+
+            elif chapter == "5":
+
+                if lesson == "1":
+                    lesson_index = 15
+                elif lesson == "2":
+                    lesson_index = 16
+                elif lesson == "3":
+                    lesson_index = 17
+                elif lesson == "4":
+                    lesson_index = 18
+                elif lesson == "5":
+                    lesson_index = 19
+                elif lesson == "6":
+                    lesson_index = 20
+                elif lesson == "7":
+                    lesson_index = 21
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+            else:
+
+                if lesson == "1":
+                    lesson_index = 22
+                elif lesson == "2":
+                    lesson_index = 23
+                else:
+                    print("Invalid Lesson Choice!")
+                    continue
+
+            # PANG EGANA GANA LESSON NA APILI NING USER KASI PAG ANTIMO MEMILI YANG CHAPTER 1 LESSON 1 LESSON INDEX = 0 ING USER MA PRINT ING LAMAN NA NITANG TITLE NA MAKAPALUG KENG TITLE LIST[0] AMPO TITLE [0]
+            title1 = titles[lesson_index]
+            notes1 = notes[lesson_index]
+
+            print("\n" + "=" * 45)
+            print(chapter_title)
+            print("★ " + title1.upper() + " ★")
+            print("=" * 45)
+
+            print("\n--- LESSON NOTES ---")
+            for note in notes1:
+                print("✔ " + note)
+
+
+
+            while True:
+
+                print("\n" + "-" * 45)
+                print("What would you like to do next?")
+                print("Points:", points)
+                print("-" * 45)
+
+                print("[1] Examples")
+                print("[2] Try Yourself")
+                print("[3] Take a 1 Question")
+                print("[0] Back to Lessons")
+                print()
+                section = input("Choose an option: ")
+
+                # NUNG [1]Examples ING APILI NA LUNTO ITANG EXAMPLE NA PINILI NA KETANG CHAPTER NA ININPUT NA ANYANG MINUNA ITA ING LUNTO NE
+                if section == "1":
+
+                    example1 = examples[lesson_index]
+
+                    print("\n--- EXAMPLES ---")
+                    print(example1)
+
+                # MAKANTA MU RIN NUNG INI ING PINILI NA NUNG NANUNG CHAPTER ING PINILI NA ITA ING LUNTONG TRY YOURSELF KAYA
+                elif section == "2":
+
+                        activity1 = activities_question[lesson_index]
+                        activity_answer1 = activity_answers[lesson_index]
+
+                        print("\n--- TRY YOURSELF ---")
+                        print(activity1)
+                        try_answer = input("Your Answer: ")
+
+                        if try_answer.strip().lower() == activity_answer1:
+                            print("Congratulations! Your answer is correct.")
+                        else:
+                            print("Not quite! Try reviewing the lesson again.")
+
+
+                elif section == "3":
+
+                    question1 = quiz_questions[lesson_index]  # the quiz question
+                    options1 = quiz_options[lesson_index]  # the A, B, C, D choices
+                    correct1 = quiz_answers[lesson_index]  # the correct letter
+
+                    print("\n--- LESSON QUIZ ---")
+                    print(question1)
+
+                    for option in options1:
+                        print(option)
+
+                    quiz_answer = input("\nEnter your answer (A/B/C/D): ").strip().upper()
+
+                    # ONLY A, B, C, or D is allowed NO SPECIAL KARAKTERS
+                    while quiz_answer != "A" and quiz_answer != "B" and quiz_answer != "C" and quiz_answer != "D":
+                        print("Invalid choice! Please enter only A, B, C, or D.")
+                        quiz_answer = input("Enter your answer again (A/B/C/D): ").strip().upper()
+
+                    if quiz_answer == correct1:
+                        print("Correct! Well done!")
+
+
+                        if title1 not in quiz_done:
+                            quiz_done.append(title1)
+                            quizzes_passed += 1
+                            points += 10
+                            print("+10 points!")
+                    else:
+                        print("Wrong answer!")
+                        print("The correct answer is:", correct1)
+
+                # MAGBALIK KENG LESSONS
+                elif section == "0":
+                    break
+
+                else:
+                    print("Invalid choice! Please Select again.")
+
+
+
+
+    elif chapter == "7":
+
+        print("\n---------- QUIZ CHALLENGE ----------")
+        print("Answer 6 questions. Each correct answer = 5 points.\n")
+
+        questions = [
+            "1. Who created the Python programming language?",
+            "2. Which function displays output on the screen?",
+            "3. Which function accepts user input?",
+            "4. What is the result of 10 % 3?",
+            "5. Which keyword checks another condition after if?",
+            "6. Which loop repeats while its condition is True?"
+        ]
+
+        choices = [
+            "A. Alden Richards B. Alex Gonzaga  C. Coco Martin  D. Guido van Rossum",
+            "A. show()  B. display()  C. print()  D. prent()",
+            "A. print()  B. type()  C. input()  D. int()",
+            "A. 3  B. 0  C. 1  D. 3.33",
+            "A. else  B. elif  C. while  D. for",
+            "A. for  B. if  C. else  D. while"
+        ]
+
+        answers = ["D", "C", "C", "C", "B", "D"]
+
+        score = 0
+
+        for i in range(6):
+            print(questions[i])
+            print(choices[i])
+
+            final_answer = input("Your answer: ").strip().upper()
+
+
+            while final_answer != "A" and final_answer != "B" and final_answer != "C" and final_answer != "D":
+                print("Invalid choice! Please enter only A, B, C, or D.")
+                final_answer = input("Your answer: ").strip().upper()
+
+            if final_answer == answers[i]:
+                print("Correct!\n")
+                score += 1
+            else:
+                print("Wrong! Correct answer:", answers[i], "\n")
+
+
+        if score > best_challenge_score:
+            earned = (score - best_challenge_score) * 5
+            points += earned
+            best_challenge_score = score
+            print(f"You earned {earned} points!")
+
+        print("-" * 45)
+        print("Final Score:", score, "/ 6")
+
+        if score == 6:
+            print("PERFECT! You are ready for the exam!")
+        elif score >= 4:
+            print("Good job! Review a little more.")
+        else:
+            print("Keep studying. You can do it!")
+        print("-" * 45)
+
+
+
+    elif chapter == "8":
+
+        print("\n---------- PROGRESS ----------")
+
+        print(f"Quizzes passed :{quizzes_passed} / 24")
+        print("█" * quizzes_passed + "░" * (24 - quizzes_passed))
+
+        print(f"\nPoints: {points} | Rank: {rank}")
+
+        if quizzes_passed > 0:
+            print("\nCompleted quizzes:")
+            for name in quiz_done:
+                print("★ " + name)
+
+
+    elif chapter == "0":
+
+        print("\n" + "=" * 45)
+        print("Thank you for using my Python Reviewer!")
+        print(f"Final Points: {points} | Rank: {rank}")
+        print("Keep studying and keep learning you can pass that!")
+        print("=" * 45)
+
+        break
+
+    else:
+        print("Invalid Choice! Please try again.")
