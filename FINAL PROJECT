@@ -3,14 +3,14 @@ print("Hello, choose between: ")
 print()
 print("Do you wish to continue in Guest mode or Sign up? ")
 print()
-account = (input("Enter (Y) to Sign up, Enter (N) to Guest mode: ")).upper()
+account = (input("Enter (S) to Sign up, Enter (G) to Guest mode: ")).upper()
 
-while account != "Y" and account != "N":
+while account != "S" and account != "G":
     print("Invalid Input Please try again.")
-    account = (input("Enter (Y) to Sign up, Enter (N) to Guest mode: ")).upper()
+    account = (input("Enter (S) to Sign up, Enter (G) to Guest mode: ")).upper()
     print()
 
-if account == "Y":
+if account == "S":
     print("Welcome! Please Sign up first")
     print()
     username = input("Input your Username: ")
@@ -47,7 +47,6 @@ if account == "Y":
     print(
         f"Hello, {login_username}! Welcome to my Python Finals Reviewer, What would you like to tackle?")
     print( "-----------------------------------------------------------------------------------------------------------------")
-
     print("                                         PYTHON FINAL LESSONS REVIEWER")
     print( "-----------------------------------------------------------------------------------------------------------------")
 
@@ -56,6 +55,7 @@ else:
     print()
     name = input("Enter your Name:")
 
+    #CONFIRMATION IF NO SPECIAL CHARACTERS ARE ENTERED
 
     valid_name = True
     has_letter = False
@@ -124,7 +124,7 @@ titles = [
     # -----[8]-----
     "Variables, Constants,and Data Types in Python",
     # -----[9]-----
-    "basic Data Types in Python",
+    "Basic Data Types in Python",
 
     # ---CHAPTER 3 ARITHMETIC OPERATORS and EXPRESSIONS---
     # -----[10]-----
@@ -205,10 +205,9 @@ notes = [
     # -----CHAPTER 2 BASIC  SYNTAX PYTON -----
     # ----- [4] -----
     [
+        "Syntax refers to the set of rules that tells us how to correctly write a program in Python.",
         "Python is case-sensitive. It treats uppercase and lowercase letters differently.\nExample:\nname = \"John\"\nprint(name)    ✔\nprint(Name)    ✕ error: Name is not the same as name",
-        "Example 2:\nage = 18\nif age >= 18:\n    print(\"Adult\")    ✔ indented (inside the block)\n\nage = 18\nif age >= 18:\nprint(\"Adult\")        ✕ NOT indented (outside the block)",
-        "Example 2: print(age = 18 <----- Assigns value or variable \n \n   if age >= 18 <---- check condition \n       print(\"Adult\") <---- (Indented inside the  block) \n \n age = 18 \n\n   if age >=18 \n print(\"Adult\") <---- ✕ NOT INDENTED INSIDE THE BLOCK )",
-        "name and Name are not the same, so print(Name) gives an error if only name was created.",
+        "Example of indentation:\nage = 18\nif age >= 18:\n    print(\"Adult\")    ✔ indented (inside the block)\n\nage = 18\nif age >= 18:\nprint(\"Adult\")        ✕ NOT indented (outside the block)",
         "Unlike other programming languages, Python uses indentation (spaces) to define blocks of code.",
         "A line inside an if block must be indented."
     ],
@@ -512,10 +511,10 @@ activities_question = [
 
     # SAPTER PAYBB MEDTIRM
     # ----- [15]-----
-    "if age = 17 \n if age <= 18 \n What will it print? print(\" Minor\") or print(\" Adultt \")",
+    "age = 17\nif age < 18:\n    print(\"Minor\")\nelse:\n    print(\"Adult\")\nWhat will it print? (Minor/Adult)",
 
     # -----[16]-----
-    "a = 10 \n 10 !=5 and 10 == a + 1 ",
+    "a = 10\nWhat is the result of 10 != 5 and 10 == a + 1 ? (True/False)",
 
     # -----[17]-----
     "What symbol must be at the end of an if line?",
@@ -1006,7 +1005,7 @@ while True:
                 print()
                 section = input("Choose an option: ")
 
-                # NUNG [1]Examples ING APILI NA LUNTO ITANG EXAMPLE NA PINILI NA KETANG CHAPTER NA ININPUT NA ANYANG MINUNA ITA ING LUNTO NE
+                # NUNG [1]Examples ING APILI NA LUNTO ITANG EXAMPLE NA PINILI NA KETANG CHAPTER NA ININPUT NA ANYANG MINUNA ITA ING LUNTO
                 if section == "1":
 
                     example1 = examples[lesson_index]
@@ -1032,9 +1031,9 @@ while True:
 
                 elif section == "3":
 
-                    question1 = quiz_questions[lesson_index]  # the quiz question
-                    options1 = quiz_options[lesson_index]  # the A, B, C, D choices
-                    correct1 = quiz_answers[lesson_index]  # the correct letter
+                    question1 = quiz_questions[lesson_index]
+                    options1 = quiz_options[lesson_index]
+                    correct1 = quiz_answers[lesson_index]
 
                     print("\n--- LESSON QUIZ ---")
                     print(question1)
@@ -1075,7 +1074,8 @@ while True:
     elif chapter == "7":
 
         print("\n---------- QUIZ CHALLENGE ----------")
-        print("Answer 6 questions. Each correct answer = 5 points.\n")
+        print("Answer 6 questions. Each correct answer = 5 points.")
+        print("Only a new best score earns points.\n")
 
         questions = [
             "1. Who created the Python programming language?",
