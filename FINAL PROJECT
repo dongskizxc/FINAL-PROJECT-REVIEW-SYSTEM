@@ -16,11 +16,11 @@ if account == "S":
     username = input("Input your Username: ")
     password = input("Input your password: ")
 
-    password_confirm = input("Input your password again for confirmation: ")
+    password_confirm = input("Input your password again: ")
 
     while password!= password_confirm:
         print("They don't match! Please try again.")
-        password_confirm = input("Input your password again for confirmation: ")
+        password_confirm = input("Input your password again: ")
 
     print()
     print("Signed Up Successful, You're all set! ")
