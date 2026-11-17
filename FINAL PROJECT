@@ -1000,7 +1000,7 @@ while True:
 
                 print("[1] Examples")
                 print("[2] Try Yourself")
-                print("[3] Take a 1 Question")
+                print("[3] Take 1 Question")
                 print("[0] Back to Lessons")
                 print()
                 section = input("Choose an option: ")
