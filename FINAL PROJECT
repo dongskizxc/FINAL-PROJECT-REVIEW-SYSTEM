@@ -1035,7 +1035,7 @@ while True:
                     options1 = quiz_options[lesson_index]
                     correct1 = quiz_answers[lesson_index]
 
-                    print("\n--- LESSON QUIZ ---")
+                    print("\n--- 1 QUESTION QUIZ ---")
                     print(question1)
 
                     for option in options1:
